@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        width:80%;
+        margin:auto;
+    }
+    .doan1{
+        display: flex; 
+        text-align: center;
+    }
+    .doan1 a {
+        text-decoration: none;
+        color: gray;
+        text-align: center;
+    }
+    .doan1 a:hover{
+        color: yellow;
+    }
+    .login{
+            width: 650px ;
+            height: 500px;
+            margin: auto;
+            border-radius: 3px;
+            padding: 20px;
+       }
+       .login img{
+            width: 130px;
+            height: 50px;
+       }
+        .login input{
+        width: 600px;
+        height: 44px;
+        background-color:whitesmoke;
+        border: 0 ;
+        border-radius: 3px;
+       }
+      
+       .login h3{
+        text-align: left;
+        padding: 23px;
+        margin: -12px auto;
+        font-size: 18.72px;
+        color: #000000;
+       }
+       .chuthich input{
+        width: 600px;
+        height: 100px;
+       }
+       button{
+        border: 0;
+        background-color: #000000;
+        color: azure;
+        width: 100px;
+        height: 50px;
+       }
+       button:hover{
+        background-color: yellow;
+       }
+       .logo{
+    text-align: center;
+    }
+    .logo img{
+    width: 130px;
+    height: auto;
+    color: #27272a;
+    }
+    .menu{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .menu ul {
+    list-style: none;
+    display: flex;
+    
+    }
+    .menu li a {
+    display: flex;
+    padding:0 18px ;
+    font-size: 20px;
+    color: #27272a;
+    text-decoration: none;
+    }
+    .menu li a:hover{
+    color: #fbd950;
+    }
+    header{
+        box-shadow: 0 0 5px gray;
+        margin: 40px auto ;
+        padding: 15px;
+    }
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" alt="logo">
+        </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="TrangChu.html.html">Trang Chủ</a></li>
+                    <li><a href="thuonghieu.html">Về thương hiệu Hanni</a></li>
+                    <li><a href="sanpham.html">Sản Phẩm</a></li>
+                    <li><a href="tintuc.html">Tin tức mới nhất</a></li>
+                    <li><a href="">Chính sách công ty</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    <li><a href=""><i class="fa-regular fa-heart"></i></a></li>
+                    <li><a href=""><i class="fa-solid fa-bag-shopping"></i>Giỏ hàng(0)</a></li>
+                    <li><a href="login.html"><i class="fa-regular fa-id-badge"></i>Đăng nhập </a></li>
+                </ul>
+            </div>   
+        </header>
+
+
+    <div class="container">
+        <div class="doan1">
+        <p><a href="TrangChu.html">Trang chủ > </a></p>
+        <p>Liên Hệ</p>
+    </div>
+        <div class="login">
+            <h3>Họ và Tên</h3>
+            <input type="text" placeholder="Tên của bạn là ...">
+            <h3>Email</h3>
+            <input type="password" placeholder="Email của bạn là ...">
+            <h3>Số điện thoại (*)</h3>
+            <input type="text" placeholder="Số điện thoại bạn là ..">
+            <div class="chuthich">
+            <h3>Nội Dung</h3>
+            <input type="text" placeholder="Nội dung..">
+            <p>(*) là các trường hợp bắt buộc</p>
+            </div>
+             <button>Gửi lời nhắn</button>
+        </div>
+        
+        <!-- thêm bản đồ ggmap -->
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.670029343399!2d105.7771882747943!3d10.044063890063619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08802d1b5aaab%3A0xeca0b93da2b9687c!2sC%C3%B4ng%20Ty%20Tnhh%20Hamal%20Vietnam!5e0!3m2!1svi!2s!4v1721806865802!5m2!1svi!2s"  width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</body>
+</html>
