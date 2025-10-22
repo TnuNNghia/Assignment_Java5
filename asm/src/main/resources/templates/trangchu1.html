@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Hannidy.vn</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        main {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- ========== HEADER ========== -->
+    <header th:replace="~{layout/header :: header}"></header>
+
+    <!-- ========== BANNER CHÍNH ========== -->
+    <div class="banner">
+        <img id="img" th:src="@{/img/banner.png}" alt="banner chính">
+        <i class="fa-solid fa-chevron-left" onclick="prev()"></i>
+        <i class="fa-solid fa-chevron-right" onclick="next()"></i>
+    </div>
+
+
+
+    <!-- ========== DANH SÁCH SẢN PHẨM ========== -->
+    <main>
+        <h2 class="best" style="text-align:center; font-size:26px; font-weight:700; color:#111; margin:40px 0 25px; letter-spacing:1px;">
+            SẢN PHẨM MỚI NHẤT
+        </h2>
+
+        <div class="sanpham">
+            <div class="sp1" th:each="sp : ${products}">
+                <img th:src="@{'/img/' + ${sp.hinhAnh}}" alt="Ảnh sản phẩm">
+                <h3 th:text="${sp.tenSanPham}">Tên sản phẩm</h3>
+                <p><b th:text="${#numbers.formatDecimal(sp.donGia, 0, 'POINT', 0, 'COMMA')} + ' đ'">0 đ</b></p>
+                <p>Số lượng còn: <b th:text="${sp.soLuongTon}">0</b></p>
+                <h4 th:if="${sp.soLuongTon > 10}">HOT</h4>
+                <a class="btn-add" th:href="@{|/cart/add/${sp.maSanPham}|}">🛒 Thêm vào giỏ</a>
+            </div>
+        </div>
+
+        <!-- ========== GIỚI THIỆU THƯƠNG HIỆU ========== -->
+        <section class="gthieu">
+            <h2>VỀ HANNIDY PARFUMS</h2>
+            <div class="gthieu-content">
+                <img th:src="@{/img/nuochoa.png}" alt="Giới thiệu">
+                <div class="gthieu-text">
+                    <h3>“Tinh hoa mùi hương – Đẳng cấp từ sự tinh tế.”</h3>
+                    <p>
+                        Hannidy là thương hiệu nước hoa Việt Nam cao cấp, mang đến những trải nghiệm hương thơm độc đáo,
+                        sang trọng và đầy cảm xúc. Chúng tôi kết hợp tinh hoa nguyên liệu Châu Âu cùng bàn tay sáng tạo Việt,
+                        tạo nên những chai nước hoa thể hiện cá tính riêng biệt.
+                    </p>
+                    <a class="btn-about" th:href="@{/thuonghieu}">Khám phá ngay</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== BỘ SƯU TẬP DÀNH CHO NAM ========== -->
+        <section class="tieude">
+            <h2>HAMAL FOR MALE</h2>
+            <h1>---</h1>
+        </section>
+
+        <div class="sanpham">
+            <div class="sp1" th:each="sp : ${products}">
+                <img th:src="@{'/img/' + ${sp.hinhAnh}}" alt="Ảnh sản phẩm">
+                <h3 th:text="${sp.tenSanPham}">Tên sản phẩm</h3>
+                <p><b th:text="${#numbers.formatDecimal(sp.donGia, 0, 'POINT', 0, 'COMMA')} + ' đ'">0 đ</b></p>
+                <p>Số lượng còn: <b th:text="${sp.soLuongTon}">0</b></p>
+                <h4 th:if="${sp.soLuongTon > 10}">HOT</h4>
+                <a class="btn-add" th:href="@{|/cart/add/${sp.maSanPham}|}">🛒 Thêm vào giỏ</a>
+            </div>
+        </div>
+
+
+        <!-- ========== KHỐI “TÌM HIỂU NGAY” ========== -->
+        <div class="p">
+            <p>TÌM HIỂU NGAY</p>
+        </div>
+
+        <!-- ========== BLOG / TIN TỨC ========== -->
+        <section class="tieude">
+            <h2>HANNIDY’S BLOG</h2>
+            <h1>-</h1>
+            <p>Chia sẻ kiến thức & cảm hứng hương thơm</p>
+        </section>
+
+        <div class="blog">
+            <div class="doan1">
+                <div class="blog-img">
+                    <img th:src="@{/img/doan1.png}" alt="Công dụng kỳ ảo của hương">
+                    <span class="blog-date">Ngày đăng: 27/06/2022</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Những công dụng kỳ ảo của hương</h3>
+                    <p>
+                        Các loại nước hoa phổ biến hiện nay không chỉ lưu hương mà còn mang lại
+                        nhiều lợi ích bất ngờ khác. Hãy cùng Hannidy tìm hiểu nhé!
+                    </p>
+                    <a href="#" class="blog-link">Xem chi tiết →</a>
+                </div>
+            </div>
+
+            <div class="doan1">
+                <div class="blog-img">
+                    <img th:src="@{/img/doan2.png}" alt="Nguồn gốc và lịch sử mùi hương">
+                    <span class="blog-date">Ngày đăng: 27/06/2022</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Nguồn gốc và lịch sử mùi hương</h3>
+                    <p>
+                        Người Hy Lạp cổ đại được xem là những người đầu tiên sáng tạo ra nước hoa.
+                        Câu chuyện về mùi hương bắt đầu từ đây...
+                    </p>
+                    <a href="#" class="blog-link">Xem chi tiết →</a>
+                </div>
+            </div>
+
+            <div class="doan1">
+                <div class="blog-img">
+                    <img th:src="@{/img/doan3.png}" alt="Hướng dẫn cách dùng nước hoa đúng cách">
+                    <span class="blog-date">Ngày đăng: 28/04/2022</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Hướng dẫn cách dùng nước hoa đúng cách</h3>
+                    <p>
+                        Biết cách sử dụng nước hoa đúng sẽ giúp bạn tỏa hương tự nhiên,
+                        tinh tế suốt cả ngày dài.
+                    </p>
+                    <a href="#" class="blog-link">Xem chi tiết →</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========== FORM ĐĂNG KÝ / KẾT NỐI ========== -->
+        <section class="cuoi">
+            <img th:src="@{/img/thanhpho.png}" alt="">
+            <div class="noidung">
+                <p><span>Kết nối cùng Hannidy để không bỏ lỡ ưu đãi hấp dẫn!</span></p>
+                <p>Đăng ký nhận tin ngay hôm nay.</p>
+                <input type="text" placeholder="Số điện thoại của bạn ..."><br>
+                <select>
+                    <option selected disabled>Bạn đang làm trong lĩnh vực nào?</option>
+                    <option>Học sinh, sinh viên</option>
+                    <option>Kinh doanh online</option>
+                    <option>Công việc tự do</option>
+                    <option>Nhân viên văn phòng</option>
+                    <option>Khác</option>
+                </select>
+                <button class="btn-register">Đăng ký</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+</div>
+
+<script th:src="@{/js/style.js}"></script>
+</body>
+</html>

@@ -117,7 +117,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     </nav>
     
     <div class="slider">
-        <img src="img/banner.png" alt="" style="height: 500px;">
+        <img src="../static/img/banner.png" alt="" style="height: 500px;">
     </div>
     <div id="cart">
         <table>
@@ -153,28 +153,28 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
            <div class="list_sp" id="list_sp">
                 <div class="sp">
-                    <img src="img/sanpham1.png" alt="">
+                    <img src="../static/img/sanpham1.png" alt="">
                     <h4>Hamal - Marcus</h4>
                     <h4>418.000đ</h4>
                     <input type="number" name="" id="" min="1" value="1">
                     <button onclick="this">Mua ngay</button>
                 </div>
                 <div class="sp">
-                    <img src="img/sanpham2.png" alt="">
+                    <img src="../static/img/sanpham2.png" alt="">
                     <h4>Hamal - Otis</h4>
                     <h4>418.000đ</h4>
                     <input type="number" name="" id="" min="1" value="1">
                     <button onclick="this">Mua ngay</button>
                 </div>
                 <div class="sp">
-                    <img src="img/sanpham1.png" alt="">
+                    <img src="../static/img/sanpham1.png" alt="">
                     <h4>Hamal - Farah</h4>
                     <h4>418.000đ</h4>
                     <input type="number" name="" id="" min="1" value="1">
                     <button onclick="this">Mua ngay</button>
                 </div>
                 <div class="sp">
-                    <img src="img/sanpham2.png" alt="">
+                    <img src="../static/img/sanpham2.png" alt="">
                     <h4>Hamal - Marcus</h4>
                     <h4>418.000đ</h4>
                     <input type="number" name="" id="" min="1" value="1">
@@ -190,117 +190,117 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         </h3>
     </footer>
 </div>
-<script>
-    
-//danh sách sản phẩm
-const arr_sp = [
-    {hinh:'sanpham1.png',ten:'Hamal - Marcus' ,gia: 418.000},
-    {hinh:'sanpham2.png',ten:'Hamal -Otis' ,gia: 418.000},
-    {hinh:'sanpham1.png',ten:'Hamal - Farah' ,gia: 418.000},
-    {hinh:'sanpham2.png',ten:'Hamal - Marcus' ,gia: 418.000},
-];
-//hiển thị sản phẩm ra trang chủ
-let str = '';
-for(let i = 0; i < arr_sp.length; i++){
-    str +=`
-    <div class="sp">
-        <img src="img/${arr_sp[i].hinh}" alt="">
-        <h4>${arr_sp[i].ten}</h4>
-        <h4>${arr_sp[i].gia}</h4>
-        <input type="number" name="" id="" min="1" value="1">
-        <button onclick="add(this)">Mua ngay</button>
-    </div>
-    `
-    document.getElementById('list_sp').innerHTML = str;
-}
-//thêm sản phẩm vào giỏ hàng
-    const cart = []//khởi tạo giỏ hàng
-    //hàm thêm sản phẩm
-        function add(button){
-            let div = button.parentElement.children;
-            let hinh = div[0].src;
-            let ten = div[1].innerHTML;
-            let gia = div[2].innerHTML;
-            let sl = div[3].value * 1;
-            const item = [hinh,ten,gia,sl]//lưu thông tin sản phẩm.
-            //kiểm tra sản phẩm có trùng hay không.
-            let check = true;
-            for(let i = 0; i < cart.length; i++){
-                if(ten == cart[i][1]){
-                    check = false;
-                    cart[i][3] += sl;
-                    break;
-                }
-            }
-            if(check){
-                cart.push(item);//thêm sản phẩm vào giỏ hàng
-            }
-            show();
-            demsp();
-        }
-    //hiển thị sản phẩm 
-    function show(){
-        let row = '';
-        let tong = 0;
-        let items =0;
-        for(let i = 0; i < cart.length; i++){
-            let thanhtien = cart[i][2] * cart[i][3];
-            tong += thanhtien;
-            items += parseInt(cart[i][3]);
-            row+=`
-            <tr>
-                <td>${i+1}</td>
-                <td><img src="${cart[i][0]}" alt=""></td>
-                <td>${cart[i][1]}</td>
-                <td>${cart[i][2]}</td>
-                <td>${cart[i][3]}</td>
-                <td>${thanhtien.toLocaleString('de-DE')} đ</td>
-                <td><i class="fa-regular fa-trash-can" onclick="xoa(this,${i})"></i></td>
-            </tr>
-            `
-        }
-        document.getElementById('tb').innerHTML = row;
-        document.getElementById('total').innerHTML = tong.toLocaleString('de-DE') + 'đ';
-        document.getElementById('item').innerHTML = items;
-    }
-    // function demsp(){
-    //     let dem = cart.length;
-    //     document.getElementById('item').innerHTML = dem;
-    // }
-    //ẩn hiện giỏ hàng
-        document.getElementById('cart').style.display = 'none'
-        document.querySelector('.fa-bag-shopping').addEventListener('click',
-            function(){
-                document.getElementById('cart').classList.toggle('active');
-            }
-        )
-    //xóa sản phẩm trong giỏ hàng
-        function xoa(x, i){
-            let tr = x.parentElement.parentElement;
-            tr.remove();
-            cart.splice(i,1);
-            show();
-        }
-        //hiển thị flash sale
-        setInterval(function(){
-            let end_date = new Date('2024-09-02 00:00:00').getTime();
-            let now =  new Date().getTime();
-            let d = end_date - now;
-            let ngay = Math.floor(d/(24*60*60*1000));
-            let gio = Math.floor(d/(60*60*1000));
-            let phut = Math.floor(d/(60*1000));
-            let giay = Math.floor(d/(1000));
-            // đảm bảo 1 ngày có 24h, 1h = 60p, 1p = 60s
-            gio %= 24;
-            phut %= 60;
-            giay %= 60;
-            document.getElementById('days').innerHTML = ngay;
-            document.getElementById('hours').innerHTML = gio;
-            document.getElementById('minutes').innerHTML = phut;
-            document.getElementById('seconds').innerHTML = giay;
-            console.log(ngay,gio,phut,giay);
-        },1000)
+<!--<script>-->
+<!--    -->
+<!--//danh sách sản phẩm-->
+<!--const arr_sp = [-->
+<!--    {hinh:'sanpham1.png',ten:'Hamal - Marcus' ,gia: 418.000},-->
+<!--    {hinh:'sanpham2.png',ten:'Hamal -Otis' ,gia: 418.000},-->
+<!--    {hinh:'sanpham1.png',ten:'Hamal - Farah' ,gia: 418.000},-->
+<!--    {hinh:'sanpham2.png',ten:'Hamal - Marcus' ,gia: 418.000},-->
+<!--];-->
+<!--//hiển thị sản phẩm ra trang chủ-->
+<!--let str = '';-->
+<!--for(let i = 0; i < arr_sp.length; i++){-->
+<!--    str +=`-->
+<!--    <div class="sp">-->
+<!--        <img src="img/${arr_sp[i].hinh}" alt="">-->
+<!--        <h4>${arr_sp[i].ten}</h4>-->
+<!--        <h4>${arr_sp[i].gia}</h4>-->
+<!--        <input type="number" name="" id="" min="1" value="1">-->
+<!--        <button onclick="add(this)">Mua ngay</button>-->
+<!--    </div>-->
+<!--    `-->
+<!--    document.getElementById('list_sp').innerHTML = str;-->
+<!--}-->
+<!--//thêm sản phẩm vào giỏ hàng-->
+<!--    const cart = []//khởi tạo giỏ hàng-->
+<!--    //hàm thêm sản phẩm-->
+<!--        function add(button){-->
+<!--            let div = button.parentElement.children;-->
+<!--            let hinh = div[0].src;-->
+<!--            let ten = div[1].innerHTML;-->
+<!--            let gia = div[2].innerHTML;-->
+<!--            let sl = div[3].value * 1;-->
+<!--            const item = [hinh,ten,gia,sl]//lưu thông tin sản phẩm.-->
+<!--            //kiểm tra sản phẩm có trùng hay không.-->
+<!--            let check = true;-->
+<!--            for(let i = 0; i < cart.length; i++){-->
+<!--                if(ten == cart[i][1]){-->
+<!--                    check = false;-->
+<!--                    cart[i][3] += sl;-->
+<!--                    break;-->
+<!--                }-->
+<!--            }-->
+<!--            if(check){-->
+<!--                cart.push(item);//thêm sản phẩm vào giỏ hàng-->
+<!--            }-->
+<!--            show();-->
+<!--            demsp();-->
+<!--        }-->
+<!--    //hiển thị sản phẩm -->
+<!--    function show(){-->
+<!--        let row = '';-->
+<!--        let tong = 0;-->
+<!--        let items =0;-->
+<!--        for(let i = 0; i < cart.length; i++){-->
+<!--            let thanhtien = cart[i][2] * cart[i][3];-->
+<!--            tong += thanhtien;-->
+<!--            items += parseInt(cart[i][3]);-->
+<!--            row+=`-->
+<!--            <tr>-->
+<!--                <td>${i+1}</td>-->
+<!--                <td><img src="${cart[i][0]}" alt=""></td>-->
+<!--                <td>${cart[i][1]}</td>-->
+<!--                <td>${cart[i][2]}</td>-->
+<!--                <td>${cart[i][3]}</td>-->
+<!--                <td>${thanhtien.toLocaleString('de-DE')} đ</td>-->
+<!--                <td><i class="fa-regular fa-trash-can" onclick="xoa(this,${i})"></i></td>-->
+<!--            </tr>-->
+<!--            `-->
+<!--        }-->
+<!--        document.getElementById('tb').innerHTML = row;-->
+<!--        document.getElementById('total').innerHTML = tong.toLocaleString('de-DE') + 'đ';-->
+<!--        document.getElementById('item').innerHTML = items;-->
+<!--    }-->
+<!--    // function demsp(){-->
+<!--    //     let dem = cart.length;-->
+<!--    //     document.getElementById('item').innerHTML = dem;-->
+<!--    // }-->
+<!--    //ẩn hiện giỏ hàng-->
+<!--        document.getElementById('cart').style.display = 'none'-->
+<!--        document.querySelector('.fa-bag-shopping').addEventListener('click',-->
+<!--            function(){-->
+<!--                document.getElementById('cart').classList.toggle('active');-->
+<!--            }-->
+<!--        )-->
+<!--    //xóa sản phẩm trong giỏ hàng-->
+<!--        function xoa(x, i){-->
+<!--            let tr = x.parentElement.parentElement;-->
+<!--            tr.remove();-->
+<!--            cart.splice(i,1);-->
+<!--            show();-->
+<!--        }-->
+<!--        //hiển thị flash sale-->
+<!--        setInterval(function(){-->
+<!--            let end_date = new Date('2024-09-02 00:00:00').getTime();-->
+<!--            let now =  new Date().getTime();-->
+<!--            let d = end_date - now;-->
+<!--            let ngay = Math.floor(d/(24*60*60*1000));-->
+<!--            let gio = Math.floor(d/(60*60*1000));-->
+<!--            let phut = Math.floor(d/(60*1000));-->
+<!--            let giay = Math.floor(d/(1000));-->
+<!--            // đảm bảo 1 ngày có 24h, 1h = 60p, 1p = 60s-->
+<!--            gio %= 24;-->
+<!--            phut %= 60;-->
+<!--            giay %= 60;-->
+<!--            document.getElementById('days').innerHTML = ngay;-->
+<!--            document.getElementById('hours').innerHTML = gio;-->
+<!--            document.getElementById('minutes').innerHTML = phut;-->
+<!--            document.getElementById('seconds').innerHTML = giay;-->
+<!--            console.log(ngay,gio,phut,giay);-->
+<!--        },1000)-->
 
-</script>
+<!--</script>-->
 </body>
 </html>

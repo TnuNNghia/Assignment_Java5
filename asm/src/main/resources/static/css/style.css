@@ -8,7 +8,7 @@ body{
 .container{
     width: 100%;
     margin: auto;
-   background-color: #f8fafc;
+    background-color: #f8fafc;
 }
 .logo{
     text-align: center;
@@ -26,7 +26,7 @@ body{
 .menu ul {
     list-style: none;
     display: flex;
-    
+
 }
 .menu li a {
     display: flex;
@@ -39,8 +39,8 @@ body{
     color: #fbd950;
 }
 .banner img{
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 .fa-chevron-left{
     position: absolute;
@@ -66,61 +66,110 @@ body{
 }
 
 
-/* san pham  */
-.sanpham ,.sanpham2{
-    gap: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 1px gray;
-    width: 85%;
-    margin: auto;
-    padding: 30px;
+
+/* ======================= SẢN PHẨM ======================= */
+.sanpham {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    width: 90%;
+    margin: 50px auto;
+    padding: 30px 0;
+    background-color: #f8fafc;
 }
-.sp1{
-   box-shadow: 0 0 1px gray; 
-   width: 300px;
-   height: 420px;
-   padding: 15px;
-   border-radius: 2px;
-   background-color: #fff;
-}
-.sp1 img{
+
+.sp1 {
+    position: relative;
     width: 100%;
-    height: auto;
-}
-.sp1 span{
-    color: #fbd950;
-}
-.sp1 p{
-    color: red;
-}
-.best {
-    padding:0 40px;
-}
-.sp1:hover{
-    box-shadow: 0 0 5px gray;
-}
-.sp1 h3:hover{
-    color: #fbd950;
-}
-.sp1:hover>img{
-    transform: scale(1.1);
-}
-.sp1 img{
+    max-width: 260px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    text-align: center;
+    transition: all 0.35s ease;
     overflow: hidden;
 }
-h4{
-    
-    background-color: red;
-    border-radius: 3px;
-    color: #fff;
-    width: 80px;
-    height: 20px;
-    text-align: center;
-    float: right;
-    margin-top: -110px;
+
+.sp1 img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
 }
+
+.sp1 h3 {
+    font-size: 17px;
+    margin: 10px 0 6px;
+    color: #111;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.sp1 p {
+    margin: 4px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.sp1 p b {
+    color: #e60023;
+    font-weight: 700;
+}
+
+/* Nhãn HOT */
+.sp1 h4 {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #ff3838;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 13px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Nút thêm vào giỏ */
+.btn-add {
+    display: inline-block;
+    margin-top: 12px;
+    background-color: #111;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #fbd950;
+    color: #111;
+    transform: translateY(-2px);
+}
+
+/* Hiệu ứng hover sản phẩm */
+.sp1:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.sp1:hover img {
+    transform: scale(1.05);
+}
+
+.sp1:hover h3 {
+    color: #fbd950;
+}
+
+
+
+/* ======================= TIÊU ĐỀ, GIỚI THIỆU, BLOG ======================= */
 .sanpham2{
     display: flex;
 }
@@ -141,8 +190,8 @@ h4{
     color: #fff;
 }
 .gthieu img{
-  width:100%;
-  height: auto;
+    width:100%;
+    height: auto;
 }
 .chap1 , .chap2 , .buttum{
     color: #fff;
@@ -215,6 +264,8 @@ h4{
 .doan1:hover >img{
     transform: scale(0.9);
 }
+
+/* ======================= PHẦN CUỐI ======================= */
 .cuoi{
     width: 84%;
     margin: auto;
@@ -251,9 +302,82 @@ select{
     height:30px;
     border-radius: 4px;
     align-items: center;
-    /* justify-content: space-between; tach ra hai ben */ 
 }
-/* footer */
+.blog {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 50px auto;
+    max-width: 1100px;
+}
+
+.blog .doan1 {
+    width: 340px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.blog .doan1:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.blog-img {
+    position: relative;
+}
+
+.blog-img img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-date {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #111;
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.blog-content {
+    padding: 15px 18px 25px;
+    color: #333;
+}
+
+.blog-content h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.blog-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.blog-link {
+    text-decoration: none;
+    color: #111;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #c49b63;
+}
+
+/* ======================= FOOTER ======================= */
 footer{
     background-color: #000;
     text-align: center;
@@ -262,9 +386,9 @@ footer{
 .menu_footer img {
     width:130px;
     height: 50px;
-    }
+}
 .menu_footer ul{
-    display: flex; 
+    display: flex;
     justify-content: center;
     text-align: center;
     padding: 20px 0;
@@ -281,19 +405,7 @@ footer{
 .xahoi a{
     padding: 5px;
 }
-.fb{
-    color: #fff;
-}
-.ig{
-    color: #fff;
-}
-.tt{
-    color: #fff;
-}
-.ytb{
-    color: #fff;
-}
-.left{
+.fb, .ig, .tt, .ytb, .left{
     color: #fff;
 }
 .contens2{
@@ -308,12 +420,10 @@ footer{
 .right{
     text-align: right;
     width: 50%;
-   
 }
 .left{
     text-align: left;
     width: 50%;
-    
 }
 .right, .left{
     padding: 50px;
@@ -334,3 +444,240 @@ footer{
 .end p {
     color: gray;
 }
+
+/* ======================= HEADER CỐ ĐỊNH ======================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Để nội dung không bị che */
+body {
+    padding-top: 100px;
+}
+/* ========== DANH SÁCH SẢN PHẨM (DẠNG LƯỚI) ========== */
+.sanpham {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 90%;
+    margin: 40px auto;
+    background-color: #f8fafc;
+}
+
+.sp1 {
+    position: relative;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.sp1 img {
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+}
+
+.sp1 h3 {
+    font-size: 17px;
+    margin: 10px 0;
+    color: #000;
+    font-weight: bold;
+}
+
+.sp1 p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.sp1 p span {
+    color: red;
+    font-weight: bold;
+}
+
+/* Nhãn HOT */
+.sp1 h4 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Nút thêm vào giỏ */
+.btn-add {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #0056b3;
+}
+
+/* Hiệu ứng hover sản phẩm */
+.sp1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+.sp1:hover img {
+    transform: scale(1.05);
+}
+/* ========== GIỚI THIỆU THƯƠNG HIỆU ========== */
+.gthieu {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.gthieu h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.gthieu h2::after {
+    content: "";
+    width: 80px;
+    height: 3px;
+    background-color: #c19a6b; /* màu vàng đồng nhẹ */
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.gthieu-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.gthieu-content img {
+    width: 420px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+
+.gthieu-content img:hover {
+    transform: scale(1.03);
+}
+
+.gthieu-text {
+    max-width: 500px;
+    text-align: left;
+}
+
+.gthieu-text h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.gthieu-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+.btn-about {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #c19a6b;
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-about:hover {
+    background-color: #a57d50;
+    transform: translateY(-2px);
+}
+/* ========== BANNER ========== */
+/* ======================= BANNER ======================= */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 600px; /* 🔹 Tăng chiều cao banner (có thể đổi 500px, 650px tùy bạn) */
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 🔹 Giúp ảnh phủ đầy mà không méo */
+    transition: opacity 1s ease;
+    border-radius: 0;
+}
+
+/* Nút điều hướng */
+.banner i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px; /* 🔹 To hơn */
+    cursor: pointer;
+    z-index: 5;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.banner i:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.banner .fa-chevron-left { left: 30px; }
+.banner .fa-chevron-right { right: 30px; }
+
+/* 🔹 Hiệu ứng mờ dần ảnh */
+.banner img.fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+

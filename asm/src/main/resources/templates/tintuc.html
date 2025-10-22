@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - Hannidy.vn</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        main.blog {
+            margin-top: 50px; /* dịch xuống 1 đoạn để không dính header */
+        }
+    </style>
+
+</head>
+<body>
+<!-- ======= HEADER ======= -->
+<header th:replace="~{layout/header :: header}"></header>
+
+<!-- ======= NỘI DUNG TIN TỨC ======= -->
+<main class="blog">
+    <div class="doan1" th:each="i : ${#numbers.sequence(1,4)}">
+        <img th:src="@{/img/tintuc4.png}" alt="tin tức">
+        <div class="doan1_1">
+            <p><span>Ngày đăng: 28/04/2022</span></p>
+            <a href="#"><b>Hướng dẫn dùng nước hoa đúng cách</b></a>
+            <p>
+                Hiện nay, nước hoa trở thành một trong những món đồ không thể thiếu của giới trẻ khi ra đường.
+                Tuy nhiên, các bạn đã biết được cách sử dụng nước hoa sao cho đúng hay chưa?
+            </p>
+            <a th:href="@{/thuonghieu}"><b>Xem chi tiết</b></a>
+        </div>
+    </div>
+</main>
+
+<!-- ======= FOOTER ======= -->
+<footer th:replace="~{layout/footer :: footer}"></footer>
+</body>
+</html>

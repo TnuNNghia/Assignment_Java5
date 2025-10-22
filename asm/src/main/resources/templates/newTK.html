@@ -1,67 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    .sanpham {
-    gap: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 1px gray;
-    width: 85%;
-    margin: auto;
-    padding: 30px;
-}
-.sp1{
-   box-shadow: 0 0 1px gray; 
-   width: 300px;
-   height: 420px;
-   padding: 15px;
-   border-radius: 2px;
-   background-color: #fff;
-}
-.sp1 img{
-    width: 100%;
-    height: auto;
-}
-.sp1 span{
-    color: #fbd950;
-}
-.sp1 p{
-    color: red;
-}
-.best {
-    padding:0 40px;
-}
-.sp1:hover{
-    box-shadow: 0 0 5px gray;
-}
-.sp1 h3:hover{
-    color: #fbd950;
-}
-.sp1:hover>img{
-    transform: scale(1.1);
-}
-.sp1 img{
-    overflow: hidden;
-}
-h4{
-    
-    background-color: red;
-    border-radius: 3px;
-    color: #fff;
-    width: 80px;
-    height: 20px;
-    text-align: center;
-    float: right;
-    margin-top: -110px;
-}
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+        }
+       
+       .container{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+       }
+       .login{
+            width: 650px ;
+            height: 900px;
+            box-shadow: 0 0 5px gray;
+            margin: auto;
+            border-radius: 3px;
+       }
+       .login img{
+            width: 130px;
+            height: 50px;
+       }
+        .login input{
+        width: 600px;
+        height: 44px;
+        background-color:whitesmoke;
+        border: 0 ;
+        border-radius: 3px;
+       }
+      
+       .login h3{
+        text-align: left;
+        padding: 23px;
+        margin: -12px auto;
+        font-size: 18.72px;
+        color: #000000;
+       }
+       .formlogin {
+        padding: 16px;
+       }
+       .nd{
+        display: flex;
+        justify-content: space-between;
+       }
+       .dn{
+        display: flex;
+       }
+       .bb{
+        padding:0 23px ;
+       }
+       .dn{
+        padding:0 23px;
+       }
+       .dn a{
+        text-decoration: none;
+        color: #000;
+       }
+       .dn a:hover{
+        color:  #fbd950;
+       }
+       button{
+        color: #fff;
+        background-color: #000;
+        width: 120px;
+        height: 50px;
+        padding: 8px 15px;
+        font-size: 16.8px;
+       }
+       button:hover{
+        background-color:#fbd950;
+        border: 0;
+       }
 
-.logo{
+
+       .logo{
     text-align: center;
     }
     .logo img{
@@ -73,8 +95,6 @@ h4{
     display:flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin: auto;
     }
     .menu ul {
     list-style: none;
@@ -95,16 +115,16 @@ h4{
         box-shadow: 0 0 5px gray;
         margin: 40px auto ;
         padding: 15px;
-       
     }
 
-
+    /* footer */
     footer{
     background-color: #000;
     text-align: center;
     padding: 20px;
     margin: 20px auto;
     width: 100%;
+    
 }
 .menu_footer img {
     width:130px;
@@ -181,15 +201,16 @@ h4{
 .end p {
     color: gray;
 }
-</style>
+    </style>
+</head>
 <body>
     <header>
         <div class="logo">
-            <img src="img/logo.png" alt="logo">
+            <img src="../static/img/logo.png" alt="logo">
         </div>
             <div class="menu">
                 <ul>
-                    <li><a href="TrangChu.html">Trang Chủ</a></li>
+                    <li><a href="TrangChu.html.html">Trang Chủ</a></li>
                     <li><a href="thuonghieu.html">Về thương hiệu Hanni</a></li>
                     <li><a href="sanpham.html">Sản Phẩm</a></li>
                     <li><a href="tintuc.html">Tin tức mới nhất</a></li>
@@ -197,43 +218,44 @@ h4{
                     <li><a href="lienhe.html">Liên hệ</a></li>
                     <li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
                     <li><a href=""><i class="fa-regular fa-heart"></i></a></li>
-                    <li><a href="giohang.html"><i class="fa-solid fa-bag-shopping"></i>Giỏ hàng(0)</a></li>
+                    <li><a href=""><i class="fa-solid fa-bag-shopping"></i>Giỏ hàng(0)</a></li>
                     <li><a href="login.html"><i class="fa-regular fa-id-badge"></i>Đăng nhập </a></li>
                 </ul>
             </div>   
         </header>
 
-
-
-    <div class="sanpham">
-        <div class="sp1">
-            <img src="img/sanpham1.png" alt="">
-            <h3><b>Hamal - Marcus</b></h3>
-            <p><span> <b>9.3/10(Sao)</b></span></p>
-            <p><b></b>418.000đ</b></p>
-            <h4>HOT</h4>
-        </div>
-        <div class="sp1">
-            <img src="img/sanpham1.png" alt="">
-            <h3><b>Hamal - Marcus</b></h3>
-            <p><span> <b>9.3/10(Sao)</b></span></p>
-            <p><b></b>418.000đ</b></p>
-        </div>
-        <div class="sp1">
-            <img src="img/sanpham1.png" alt="">
-            <h3><b>Hamal - Otis</b></h3>
-            <!-- <p><span> <b>9.3/10(Sao)</b></span></p> -->
-            <br>
-            <p><b></b>418.000đ</b></p>
-        </div>
-        <div class="sp1">
-            <img src="img/sanpham1.png" alt="">
-            <h3><b>Hamal - Farah</b></h3>
-            <p><span> <b>9.3/10(Sao)</b></span></p>
-            <p><b></b>418.000đ</b></p>
-            <h4>HOT</h4>
-        </div>
+    <form action="">
+    <div class="container">
+    <div class="login">
+    <div class="formlogin">
+        <h1>Đăng kí tài khoản</h1>
+        <img src="../static/img/logo.png" alt="">
     </div>
+        <h3>Email đăng nhập(*)</h3>
+        <input type="text" placeholder="  Email đăng nhập...">
+        <h3>Mật khẩu đăng nhập(*)</h3>
+        <input type="password" placeholder="  Nhập mật khẩu...">
+        <h3> Nhập lại mật khẩu đăng nhập(*)</h3>
+        <input type="password" placeholder="  Nhập lại mật khẩu...">
+        <h3>Họ và Tên(*)</h3>
+        <input type="text" placeholder="  Tên của bạn là...">
+        <h3>Số điện thoại(*)</h3>
+        <input type="text" placeholder="  Số điện thoại của bạn là...">
+        <h3>Địa chỉ(*)</h3>
+        <input type="text" placeholder="  Địa chỉ của bạn là...">
+        <div class="nd">
+        <div class="bb"> 
+        <p>(*) là các trường hợp bắt buộc</p>
+        </div>
+        <div class="dn">
+        <p>Đã có tài khoản,</p> <p><a href="login.html"><b>đăng nhập ngay</b></a></p>
+        </div>
+        </div>
+        <button type="submit" onclick="register(this)">Login</button>
+    </div>
+    </div>
+    </form>
+
     <footer>
         <div class="menu_footer">
                 <ul>
@@ -242,7 +264,7 @@ h4{
                     <li><a href="tintuc.html">Tin tức mới nhất</a></li>
                     <li><a href="lienhe.html">Liên hệ</a></li>
                 </ul>
-            <img src="img/logo_footer.png" alt="" >
+            <img src="../static/img/logo_footer.png" alt="" >
         </div>
         
     <div class="xahoi">
@@ -279,8 +301,32 @@ h4{
 </div>
 <div class="end">
     <p>Copyright © 2022 Bản quyền thuộc về Công ty TNHH Hamal Việt Nam. Designed by Vietcore</p>
-    <img src="img/nph.png" alt="">
+    <img src="../static/img/nph.png" alt="">
     </div>
     </footer>
+    <script>
+         function register(x){
+            event.preventDefault()// ngăn ko cho from gửi dữ liệu lên server 
+            let from = x.parentElement.children; // lấy th con trong mảng from 
+            console.log(from);
+            let username = from[0].value;
+            let pass = from[1].value;
+            let re_pass = from[2].value;
+            if(username == '' || pass == ''){
+                alert('Điền thiếu thông tin')
+                return false
+            }
+            // if(pass != re_pass){
+            //     alert("Vui lòng nhập lại mật khẩu!!!") ;
+            //     return false
+            // }
+            const user =  [username, pass]
+            localStorage.setItem("user", JSON.stringify(user));
+            // localStorage.setItem :lưa dữ liệu lên vùng nhớ locastorage của browser
+            // JSON.stringify : hàm chuyển dữ liệu thành dạng chuỗi json 
+            alert('Bạn đã đăng kí thành công !!!');
+            location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>

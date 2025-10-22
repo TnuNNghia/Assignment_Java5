@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Hannidy.vn</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        main {
+            margin-top: 30px; /* tránh dính header cố định */
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Bố cục form và bản đồ */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* Form liên hệ */
+        .login {
+            flex: 1 1 45%;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .login h3 {
+            margin: 15px 0 8px 0;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .login input {
+            width: 100%;
+            height: 44px;
+            background-color: whitesmoke;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .chuthich input {
+            height: 100px;
+        }
+
+        .login p {
+            font-size: 13px;
+            color: gray;
+        }
+
+        button {
+            border: 0;
+            background-color: #000;
+            color: #fff;
+            width: 120px;
+            height: 45px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #fbd950;
+            color: #000;
+        }
+
+        /* Bản đồ */
+        .map {
+            flex: 1 1 45%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .contact-wrapper {
+                flex-direction: column;
+            }
+
+            .login, .map {
+                flex: 1 1 100%;
+            }
+        }
+        /* --- Thanh điều hướng (breadcrumb) --- */
+        .breadcrumb {
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 15px 0;
+            margin-top: 20px; /* 👈 Giảm xuống cho gần header hơn */
+            border-radius: 8px;
+        }
+
+        .breadcrumb p {
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+        }
+
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb span {
+            color: #777;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- ======= HEADER ======= -->
+<header th:replace="~{layout/header :: header}"></header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <p><a th:href="@{/trangchu}">Trang chủ ></a> <span>Liên hệ</span></p>
+        </div>
+
+
+        <div class="contact-wrapper">
+            <!-- FORM LIÊN HỆ -->
+            <div class="login">
+                <h3>Họ và Tên</h3>
+                <input type="text" placeholder="Tên của bạn là ...">
+
+                <h3>Email</h3>
+                <input type="text" placeholder="Email của bạn là ...">
+
+                <h3>Số điện thoại (*)</h3>
+                <input type="text" placeholder="Số điện thoại của bạn là ...">
+
+                <div class="chuthich">
+                    <h3>Nội dung</h3>
+                    <input type="text" placeholder="Nội dung...">
+                    <p>(*) là các trường bắt buộc</p>
+                </div>
+
+                <button>Gửi lời nhắn</button>
+            </div>
+
+            <!-- GOOGLE MAP -->
+            <div class="map">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.670029343399!2d105.7771882747943!3d10.044063890063619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08802d1b5aaab%3A0xeca0b93da2b9687c!2sC%C3%B4ng%20Ty%20Tnhh%20Hamal%20Vietnam!5e0!3m2!1svi!2s!4v1721806865802!5m2!1svi!2s"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ======= FOOTER ======= -->
+<footer th:replace="~{layout/footer :: footer}"></footer>
+</body>
+</html>

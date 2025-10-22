@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hannidy.vn</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- HEADER -->
+    <header>
+        <header th:replace="~{layout/header :: header}"></header>
+        <div class="banner">
+            <img th:src="@{/img/banner.png}" alt="banner" id="img">
+            <i class="fa-solid fa-chevron-left" onclick="prev()"></i>
+            <i class="fa-solid fa-chevron-right" onclick="next()"></i>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <h2 class="best">SẢN PHẨM NỔI BẬT</h2>
+        <div class="sanpham">
+            <div class="sp1" th:each="sp : ${products}">
+<!--                <img th:src="@{|/img/${sp.hinhAnh != null ? sp.hinhAnh : 'default.png'}|}" alt="Ảnh sản phẩm">-->
+                <h3 th:text="${sp.tenSanPham}">Tên sản phẩm</h3>
+                <p><b th:text="${#numbers.formatDecimal(sp.donGia, 0, 'POINT', 0, 'COMMA')} + ' đ'">0 đ</b></p>
+                <h4 th:if="${sp.soLuongTon > 10}">HOT</h4>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div th:replace="layout/footer :: footer"></div>
+
+    <script th:src="@{/js/style.js}"></script>
+</div>
+</body>
+</html>

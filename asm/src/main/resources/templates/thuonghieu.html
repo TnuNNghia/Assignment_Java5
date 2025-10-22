@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về thương hiệu Hamal</title>
+    <style>
+        .container {
+            width: 60%;
+            text-align: center;
+            margin: auto;
+        }
+        .modau {
+            display: flex;
+            text-align: center;
+        }
+        .modau a {
+            text-decoration: none;
+            color: gray;
+            text-align: center;
+        }
+        .modau img {
+            width: 450px;
+            height: 250px;
+        }
+        .doan1 h3, .doan2 h3, .doan3 h3 {
+            text-align: left;
+            font-size: 22.4px;
+        }
+        .doan1 img {
+            width: 100%;
+            margin: auto;
+        }
+        .doan1 p, .doan2 p, .doan3 p {
+            font-size: 18px;
+        }
+        .doan2 {
+            display: flex;
+            gap: 20px;
+            margin: 10px auto;
+        }
+        .doan2_1 {
+            width: 50%;
+        }
+        .doan2_2 {
+            width: 50%;
+        }
+        .doan2_1 img {
+            width: 100%;
+        }
+        .doan3 h3 {
+            text-align: center;
+        }
+        .baanh img {
+            width: 179px;
+            height: 238px;
+        }
+        .baanh {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        span {
+            font-size: 20px;
+        }
+        .doan3 {
+            gap: 20px;
+        }
+        .anh1 p, .anh2 p, .anh3 p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="modau">
+        <p><a th:href="@{/trangchu}">Trang chủ ></a></p>
+        <p>Giới thiệu về thương hiệu Hamal</p>
+    </div>
+
+    <h1>Giới thiệu về thương hiệu Hamal</h1>
+    <hr>
+
+    <!-- Logo -->
+    <img th:src="@{/img/logo.png}" alt="logo">
+
+    <div class="doan1">
+        <h3><b>Ngày nay</b></h3>
+        <hr>
+        <p>
+            Nhu cầu sử dụng nước hoa của con người ngày càng cao. Không chỉ dừng lại ở chất lượng sản phẩm tốt,
+            mọi người còn đòi hỏi nước hoa sẽ giúp họ thể hiện cá tính của bản thân. Ngoài công dụng tạo hương thơm,
+            việc sử dụng nước hoa còn mang lại những giá trị vô hình như tôn lên vẻ đẹp và sự sang trọng. Và quan
+            trọng hơn hết là giúp bạn tự tin, thoải mái và dễ chịu, giúp cuộc sống quanh bạn tốt đẹp hơn.
+        </p>
+        <img th:src="@{/img/Ngaynay.png}" alt="Ngày nay">
+    </div>
+
+    <div class="doan2">
+        <div class="doan2_1">
+            <img th:src="@{/img/Vivay.png}" alt="Vì vậy">
+        </div>
+        <div class="doan2_2">
+            <h3><b>Vì vậy</b></h3>
+            <hr>
+            <p>
+                <b>Hamal Vietnam</b> đã dày công nghiên cứu từ việc sử dụng nguồn nguyên liệu thiên
+                nhiên được nhập khẩu từ Pháp đến ứng dụng công nghệ chuyển giao và sáng tạo
+                những công thức mùi hương riêng biệt và hoàn toàn mới phù hợp với thói quen của
+                người tiêu dùng Việt trong quá trình sản xuất. Để đảm bảo rằng những sản phẩm được đưa
+                đến tay mỗi khách hàng đều tối ưu và chất lượng nhất.
+            </p>
+        </div>
+    </div>
+
+    <div class="doan3">
+        <h3><b>"NÂNG TẦM GIÁ TRỊ THƯƠNG HIỆU VIỆT"</b></h3>
+        <hr>
+        <p>
+            Với tôn chỉ đó, chúng tôi luôn dành phần lớn thời gian để đào tạo văn hóa phục vụ cho toàn bộ
+            nhân viên để trao giá trị tốt nhất đến từng khách hàng không chỉ về phục vụ mà còn cả về chất lượng
+            sản phẩm ưu việt. Hamal Vietnam hứa hẹn và luôn mong muốn mang đến cho khách hàng trải nghiệm sản phẩm tuyệt vời,
+            nâng tầm giá trị người Việt và thương hiệu Việt.
+        </p>
+
+        <div class="baanh">
+            <div class="anh1">
+                <img th:src="@{/img/thungcong.png}" alt="Nguồn nguyên liệu">
+                <p><b>Nguồn nguyên liệu tự nhiên nhập khẩu từ Châu Âu</b></p>
+            </div>
+            <div class="anh2">
+                <img th:src="@{/img/thinghiem.png}" alt="Công nghệ sản xuất">
+                <p><b>Công nghệ sản xuất hiện đại & công thức độc quyền</b></p>
+            </div>
+            <div class="anh3">
+                <img th:src="@{/img/battay.png}" alt="Đội ngũ phục vụ">
+                <p><b>Đội ngũ được đào tạo nhằm phục vụ khách hàng tốt nhất</b></p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <span><p><b>HAMAL VIETNAM COMPANY LIMITED</b></p></span>
+</div>
+</body>
+</html>
