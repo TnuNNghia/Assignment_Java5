@@ -8,23 +8,28 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Users")
 public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
     private Integer userId;
 
-    @Column(name = "Username", nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    @Column(name = "PasswordHash", nullable = false, length = 255)
+    @Column(nullable = false, length = 255)
     private String passwordHash;
 
-    @Column(name = "Email", length = 100)
+    @Column(nullable = false, unique = true, length = 150)
     private String email;
 
-    @Column(name = "Role", nullable = false, length = 20)
+    @Column(length = 50)
     private String role;
 
-    @Column(name = "NgayTaoUser")
+    @Column(name = "NgayTaoUser", nullable = false)
     private LocalDateTime ngayTaoUser = LocalDateTime.now();
+
+    // Liên kết 1-1 với KhachHang
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private KhachHang khachHang;
 }

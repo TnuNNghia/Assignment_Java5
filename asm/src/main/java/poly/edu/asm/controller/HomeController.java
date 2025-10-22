@@ -42,4 +42,8 @@ public class HomeController {
     public String login(Model model) {
         return "login"; // file login.html trong /templates
     }
+    @GetMapping("/newTK")
+    public String newTK(Model model) {
+        return "newTK";
+    }
 }

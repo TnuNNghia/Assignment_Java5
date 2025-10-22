@@ -7,13 +7,15 @@ import lombok.Data;
 @Entity
 @Table(name = "KhachHang")
 public class KhachHang {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaKhachHang")
     private Integer maKhachHang;
 
+    // Liên kết 1-1 với Users (Khóa ngoại là UserID)
     @OneToOne
-    @JoinColumn(name = "UserID", unique = true)
+    @JoinColumn(name = "UserID", unique = true, nullable = false)
     private Users user;
 
     @Column(name = "HoTen", nullable = false, length = 100)
