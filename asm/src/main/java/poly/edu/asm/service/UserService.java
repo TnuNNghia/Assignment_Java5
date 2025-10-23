@@ -16,27 +16,28 @@ public class UserService {
     @Autowired
     private KhachHangDAO khachHangDAO;
 
-    // Hàm đăng ký người dùng mới
-    public void registerUser(String email, String password, String hoTen, String soDienThoai, String diaChi) {
+    public String registerUser(String email, String password, String hoTen, String soDienThoai, String diaChi) {
+        // ✅ Kiểm tra email đã tồn tại chưa
+        if (usersDAO.existsByEmail(email)) {
+            return "Email đã tồn tại! Vui lòng nhập email khác.";
+        }
 
-        // 1️⃣ Tạo đối tượng Users
+        // ✅ Tạo mới tài khoản user
         Users user = new Users();
         user.setEmail(email);
-        user.setUsername(email); // hoặc có thể để riêng nếu bạn có trường username khác
-        user.setPasswordHash(password); // không mã hóa
-        user.setRole("USER"); // mặc định
-        // user.setNgayTaoUser(LocalDateTime.now()); // đã có sẵn trong entity rồi
-
-        // Lưu user trước để có ID
+        user.setUsername(email);
+        user.setPasswordHash(password);
+        user.setRole("Khách hàng"); // khớp CHECK constraint trong SQL
         usersDAO.save(user);
 
-        // 2️⃣ Tạo đối tượng KhachHang và liên kết với user
+        // ✅ Tạo khách hàng liên kết với user
         KhachHang kh = new KhachHang();
-        kh.setUser(user); // liên kết 1-1
+        kh.setUser(user);
         kh.setHoTen(hoTen);
         kh.setSoDienThoai(soDienThoai);
         kh.setDiaChi(diaChi);
-
         khachHangDAO.save(kh);
+
+        return "Đăng ký thành công!";
     }
 }

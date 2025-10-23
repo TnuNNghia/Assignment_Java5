@@ -519,6 +519,75 @@ body {
     border-radius: 4px;
     font-size: 13px;
 }
+/* ========== USER MENU (TÀI KHOẢN) ========== */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-menu > a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.user-menu > a:hover {
+    color: #e63946; /* đổi màu khi hover */
+}
+
+.user-menu i {
+    margin-left: 5px;
+}
+
+/* Dropdown ẩn mặc định */
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* xuất hiện ngay dưới header */
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    list-style: none;
+    padding: 8px 0;
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+}
+
+.user-menu .dropdown li {
+    padding: 8px 16px;
+}
+
+.user-menu .dropdown li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-menu .dropdown li:hover {
+    background-color: #f8f8f8;
+}
+
+.user-menu .dropdown li a:hover {
+    color: #e63946;
+}
+
+/* Khi hover vào user-menu thì dropdown hiện ra */
+.user-menu:hover .dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* Nút thêm vào giỏ */
 .btn-add {

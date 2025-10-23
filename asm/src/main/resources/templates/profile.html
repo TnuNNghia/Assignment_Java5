@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hồ sơ cá nhân</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .profile-container {
+            width: 80%;
+            margin: 60px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .profile-left, .profile-right {
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fafafa;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            flex: 0 0 35%;
+        }
+
+        input {
+            width: 60%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fff;
+        }
+
+        input[readonly] {
+            background-color: #f1f1f1;
+            cursor: not-allowed;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .error {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .profile-container {
+                flex-direction: column;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+
+<div class="profile-container">
+    <!-- CỘT TRÁI: THÔNG TIN CÁ NHÂN -->
+    <div class="profile-left">
+        <h3>Thông tin cá nhân</h3>
+        <div class="info-row">
+            <label>Họ tên:</label>
+            <input type="text" th:value="${khachHang.hoTen}" readonly>
+        </div>
+        <div class="info-row">
+            <label>Email:</label>
+            <input type="text" th:value="${user.email}" readonly>
+        </div>
+        <div class="info-row">
+            <label>Số điện thoại:</label>
+            <input type="text" th:value="${khachHang.soDienThoai}" readonly>
+        </div>
+        <div class="info-row">
+            <label>Địa chỉ:</label>
+            <input type="text" th:value="${khachHang.diaChi}" readonly>
+        </div>
+    </div>
+
+    <!-- CỘT PHẢI: ĐỔI MẬT KHẨU -->
+    <div class="profile-right">
+        <h3>Đổi mật khẩu</h3>
+        <form th:action="@{/profile/change-password}" method="post">
+            <div class="info-row">
+                <label>Mật khẩu cũ:</label>
+                <input type="password" name="oldPassword" required>
+            </div>
+            <div class="info-row">
+                <label>Mật khẩu mới:</label>
+                <input type="password" name="newPassword" required>
+            </div>
+            <div class="info-row">
+                <label>Nhập lại mật khẩu:</label>
+                <input type="password" name="confirmPassword" required>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button type="submit">Đổi mật khẩu</button>
+            </div>
+        </form>
+
+        <div class="message" th:if="${success}" th:text="${success}"></div>
+        <div class="error" th:if="${error}" th:text="${error}"></div>
+    </div>
+</div>
+</body>
+</html>

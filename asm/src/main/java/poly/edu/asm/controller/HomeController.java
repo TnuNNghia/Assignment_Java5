@@ -37,13 +37,5 @@ public class HomeController {
     public String lienhe(Model model) {
         return "lienhe"; // file lienhe.html trong /templates
     }
-    // Trang giới thiệu login
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login"; // file login.html trong /templates
-    }
-    @GetMapping("/newTK")
-    public String newTK(Model model) {
-        return "newTK";
-    }
+
 }

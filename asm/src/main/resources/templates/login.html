@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
@@ -19,6 +20,7 @@
             text-align: center;
             align-items: center;
             justify-content: center;
+            padding-top: 150px;
         }
         .login{
             width: 650px ;
@@ -86,113 +88,6 @@
             color: #000;
         }
 
-        /* Header */
-        .logo{
-            text-align: center;
-        }
-        .logo img{
-            width: 130px;
-            height: auto;
-            color: #27272a;
-        }
-        .menu{
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .menu ul {
-            list-style: none;
-            display: flex;
-
-        }
-        .menu li a {
-            display: flex;
-            padding:0 18px ;
-            font-size: 20px;
-            color: #27272a;
-            text-decoration: none;
-        }
-        .menu li a:hover{
-            color: #fbd950;
-        }
-        header{
-            box-shadow: 0 0 5px gray;
-            margin: 40px auto ;
-            padding: 15px;
-        }
-
-        /* footer */
-        footer{
-            background-color: #000;
-            text-align: center;
-            padding: 20px;
-            margin: 20px auto;
-            width: 100%;
-        }
-        .menu_footer img {
-            width:130px;
-            height: 50px;
-        }
-        .menu_footer ul{
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .menu_footer a{
-            color: #fff;
-            text-decoration: none;
-            padding: 20px;
-            font-size: 25px;
-        }
-        .xahoi{
-            padding: 15px;
-        }
-        .xahoi a{
-            padding: 5px;
-        }
-        .fb, .ig, .tt, .ytb{
-            color: #fff;
-        }
-        .left{
-            color: #fff;
-        }
-        .contens2{
-            display: flex;
-            justify-content: center;
-        }
-        .right a , .left a{
-            text-decoration: none;
-            color: #fff;
-            font-size: 16px;
-        }
-        .right{
-            text-align: right;
-            width: 50%;
-        }
-        .left{
-            text-align: left;
-            width: 50%;
-        }
-        .right, .left{
-            padding: 50px;
-        }
-        .right p , .left p{
-            color: #fff;
-            font-size: 20px;
-        }
-        .end{
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }
-        .end img{
-            width: 190px;
-            height: 19px;
-        }
-        .end p {
-            color: gray;
-        }
     </style>
 </head>
 <body>
@@ -200,31 +95,40 @@
 <!--    gọi header -->
     <header th:replace="~{layout/header :: header}"></header>
     <!-- FORM ĐĂNG NHẬP -->
-    <form>
-        <div class="container">
-            <div class="login">
-                <div class="formlogin">
-                    <h1>Đăng Nhập</h1>
-                    <img th:src="@{/img/logo.png}" alt="">
-                </div>
-                <h3>Email đăng nhập(*)</h3>
-                <input type="text" placeholder="  Nhập email...">
-                <h3>Mật khẩu đăng nhập(*)</h3>
-                <input type="password" placeholder="  Nhập mật khẩu...">
-                <div class="nd">
-                    <div class="bb">
-                        <p>(*) là các trường hợp bắt buộc</p>
-                    </div>
-                    <div class="dn">
-                        <p>Chưa có tài khoản,</p>
-                        <p><a th:href="@{/newTK}"><b>đăng kí ngay</b></a></p>
-                    </div>
-                </div>
-                <button type="submit" onclick="login(this)">Đăng nhập</button>
+<form th:action="@{/login}" method="post">
+    <div class="container">
+        <div class="login">
+            <div class="formlogin">
+                <h1>Đăng Nhập</h1>
+                <img th:src="@{/img/logo.png}" alt="">
             </div>
+
+            <h3>Email đăng nhập(*)</h3>
+            <input type="text" name="email" placeholder="  Nhập email..." required>
+
+            <h3>Mật khẩu đăng nhập(*)</h3>
+            <input type="password" name="passwordHash" placeholder="  Nhập mật khẩu..." required>
+
+            <div class="nd">
+                <div class="bb">
+                    <p>(*) là các trường hợp bắt buộc</p>
+                </div>
+                <div class="dn">
+                    <p>Chưa có tài khoản,</p>
+                    <p><a th:href="@{/register}"><b>Đăng kí ngay</b></a></p>
+                </div>
+            </div>
+
+            <button type="submit">Đăng nhập</button>
+
+            <!-- Hiện lỗi nếu có -->
+            <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+            <p th:if="${message}" th:text="${message}" style="color:green;"></p>
         </div>
-    </form>
-    <!-- ======= GỌI FOOTER ======= -->
+    </div>
+</form>
+
+<!-- ======= GỌI FOOTER ======= -->
     <div th:replace="layout/footer :: footer"></div>
 
 <script>

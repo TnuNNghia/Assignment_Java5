@@ -1,7 +1,9 @@
 <!-- ================= HEADER ================= -->
 <header th:fragment="header">
     <div class="logo">
-        <img th:src="@{/img/logo.png}" alt="logo">
+        <a th:href="@{/trangchu}">
+            <img th:src="@{/img/logo.png}" alt="logo">
+        </a>
     </div>
 
     <nav class="menu">
@@ -12,8 +14,33 @@
             <li><a th:href="@{/tintuc}">Tin tức mới nhất</a></li>
             <li><a th:href="@{/#}">Chính sách công ty</a></li>
             <li><a th:href="@{/lienhe}">Liên hệ</a></li>
-            <li><a th:href="@{/giohang}"><i class="fa-solid fa-bag-shopping" style="padding:0 10px;"></i>Giỏ hàng</a></li>
-            <li><a th:href="@{/login}"><i class="fa-regular fa-id-badge" style="padding:0 10px;"></i>Đăng nhập</a></li>
+            <li><a th:href="@{/giohang}">
+                <i class="fa-solid fa-bag-shopping" style="padding:0 10px;"></i>Giỏ hàng
+            </a></li>
+
+            <!-- Nếu chưa đăng nhập -->
+            <li th:if="${session.loggedInUser == null}" class="user-menu">
+                <a href="javascript:void(0)">
+                    <i class="fa-regular fa-id-badge" style="padding:0 10px;"></i> Tài khoản
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="dropdown">
+                    <li><a th:href="@{/login}">Đăng nhập</a></li>
+                </ul>
+            </li>
+
+            <!-- Nếu đã đăng nhập -->
+            <li th:if="${session.loggedInUser != null}" class="user-menu">
+                <a href="javascript:void(0)">
+                    <i class="fa-regular fa-user" style="padding:0 10px;"></i>
+                    <span th:text="${session.loggedInUser.username}">User</span>
+                    <i class="fa-solid fa-caret-down"></i>
+                </a>
+                <ul class="dropdown">
+                    <li><a th:href="@{/profile}">Hồ sơ cá nhân</a></li>
+                    <li><a th:href="@{/logout}">Đăng xuất</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>
