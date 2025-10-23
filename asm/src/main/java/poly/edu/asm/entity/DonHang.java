@@ -25,8 +25,6 @@ public class DonHang {
     @Column(name = "NgayDatHang")
     private LocalDate ngayDatHang;
 
-    @Column(name = "TongTien")
-    private Double tongTien;
 
     @OneToMany(mappedBy = "donHang", fetch = FetchType.LAZY)
     private List<ChiTietDonHang> chiTietDonHangs;

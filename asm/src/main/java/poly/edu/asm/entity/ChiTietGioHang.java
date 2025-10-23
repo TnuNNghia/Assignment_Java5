@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "ChiTietGioHang")
+@Data
 public class ChiTietGioHang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

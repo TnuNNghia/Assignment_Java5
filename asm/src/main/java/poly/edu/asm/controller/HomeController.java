@@ -37,5 +37,8 @@ public class HomeController {
     public String lienhe(Model model) {
         return "lienhe"; // file lienhe.html trong /templates
     }
-
+    @GetMapping("/chitietsanpham")
+    public String chitietsanpham(Model model) {
+        return "ctsp";
+    }
 }

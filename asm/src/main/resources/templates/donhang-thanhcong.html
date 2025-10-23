@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn hàng thành công</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 40px;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #28a745;
+        }
+        h3 {
+            text-align: center;
+            color: #444;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        a {
+            display: inline-block;
+            margin: 20px auto;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .total {
+            font-weight: bold;
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+
+<h2 th:text="${message}">🎉 Đặt hàng thành công!</h2>
+
+<div th:if="${donHangList != null and !donHangList.isEmpty()}">
+    <h3>🧾 Thông tin đơn hàng mới nhất</h3>
+
+    <div th:with="donHang=${donHangList.get(donHangList.size() - 1)}">
+        <table>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <td th:text="${donHang.maDonHang}"></td>
+            </tr>
+            <tr>
+                <th>Ngày đặt</th>
+                <td th:text="${donHang.ngayDatHang}"></td>
+            </tr>
+            <tr>
+                <th>Số lượng sản phẩm</th>
+                <td th:text="${#lists.size(donHang.chiTietDonHangs)}"></td>
+            </tr>
+        </table>
+
+        <h3>📦 Chi tiết đơn hàng</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ct : ${donHang.chiTietDonHangs}">
+                <td th:text="${ct.sanPham.tenSanPham}"></td>
+                <td th:text="${#numbers.formatDecimal(ct.donGia, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                <td th:text="${ct.soLuong}"></td>
+                <td class="total"
+                    th:text="${#numbers.formatDecimal(ct.donGia * ct.soLuong, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="total">
+            Tổng cộng:
+            <span th:text="${#numbers.formatDecimal(
+                #numbers.sum(donHang.chiTietDonHangs.^[donGia * soLuong]),
+                0, 'COMMA', 0, 'POINT'
+            )} + ' đ'"></span>
+        </h3>
+    </div>
+</div>
+
+<a th:href="@{/sanpham}">⬅️ Tiếp tục mua hàng</a>
+
+</body>
+</html>

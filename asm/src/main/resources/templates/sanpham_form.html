@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm / Sửa sản phẩm</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        form {
+            max-width: 450px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+
+        a {
+            display: inline-block;
+            margin-left: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .alert {
+            text-align: center;
+            margin: 15px auto;
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .alert.error {
+            background-color: #ffe0e0;
+            color: #b30000;
+            border: 1px solid #ffb3b3;
+        }
+
+        .alert.success {
+            background-color: #e0ffe4;
+            color: #006b1b;
+            border: 1px solid #99e0a8;
+        }
+
+        /* Xem trước ảnh */
+        .preview {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .preview img {
+            max-width: 200px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h2 th:text="${sanPham.maSanPham != null} ? 'Cập nhật sản phẩm' : 'Thêm sản phẩm mới'"></h2>
+
+<div th:if="${errorMessage}" class="alert error" th:text="${errorMessage}"></div>
+<div th:if="${successMessage}" class="alert success" th:text="${successMessage}"></div>
+
+<form th:action="@{/sanpham/save}" th:object="${sanPham}" method="post">
+    <input type="hidden" th:field="*{maSanPham}"/>
+
+    <div class="form-group">
+        <label>Tên sản phẩm:</label>
+        <input type="text" th:field="*{tenSanPham}" placeholder="Nhập tên sản phẩm" required/>
+    </div>
+
+    <div class="form-group">
+        <label>Đơn giá:</label>
+        <input type="number" th:field="*{donGia}" step="0.01" min="0" placeholder="Nhập giá" required/>
+    </div>
+
+    <div class="form-group">
+        <label>Số lượng tồn:</label>
+        <input type="number" th:field="*{soLuongTon}" min="0" required/>
+    </div>
+
+    <!-- 🔹 Chọn ảnh có sẵn thay vì upload -->
+    <div class="form-group">
+        <label>Hình ảnh:</label>
+        <select th:field="*{hinhAnh}" onchange="updatePreview(this)">
+            <option value="">-- Chọn hình ảnh --</option>
+            <option th:each="hinh : ${dsHinh}"
+                    th:value="${hinh}"
+                    th:text="${hinh}"
+                    th:selected="${hinh == sanPham.hinhAnh}"></option>
+        </select>
+    </div>
+
+    <div class="preview">
+        <img id="imgPreview" th:if="${sanPham.hinhAnh}"
+             th:src="@{'/img/' + ${sanPham.hinhAnh}}" alt="Ảnh sản phẩm"/>
+    </div>
+
+    <div class="form-group">
+        <label>Loại sản phẩm:</label>
+        <select th:field="*{loai.maLoai}">
+            <option value="" disabled selected>-- Chọn loại sản phẩm --</option>
+            <option th:each="loai : ${dsLoai}"
+                    th:value="${loai.maLoai}"
+                    th:text="${loai.tenLoai}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Nhà cung cấp:</label>
+        <select th:field="*{nhaCungCap.maNhaCungCap}">
+            <option value="" disabled selected>-- Chọn nhà cung cấp --</option>
+            <option th:each="ncc : ${dsNCC}"
+                    th:value="${ncc.maNhaCungCap}"
+                    th:text="${ncc.tenNhaCungCap}"></option>
+        </select>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+        <button type="submit">💾 Lưu</button>
+        <a th:href="@{/sanpham}">← Quay lại</a>
+    </div>
+</form>
+
+<script>
+    function updatePreview(select) {
+        const selectedImage = select.value;
+        const imgPreview = document.getElementById('imgPreview');
+        if (selectedImage) {
+            imgPreview.src = '/img/' + selectedImage;
+            imgPreview.style.display = 'block';
+        } else {
+            imgPreview.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Gửi Email</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+
+<div class="container">
+    <h2>Gửi Email</h2>
+
+    <!-- 1 form duy nhất, 2 button -->
+    <form th:action="@{/mail/send}" th:object="${mail}" method="post">
+        <label>Người gửi:</label>
+        <input type="text" th:field="*{from}" value="nghiatttv00104@fpt.edu.vn" required />
+
+        <label>Người nhận:</label>
+        <input type="text" th:field="*{to}" placeholder="Nhập email người nhận, cách nhau bằng dấu , hoặc ;" required />
+
+        <label>CC:</label>
+        <input type="text" th:field="*{cc}" placeholder="Email CC, cách nhau bằng dấu , hoặc ;" />
+
+        <label>BCC:</label>
+        <input type="text" th:field="*{bcc}" placeholder="Email BCC, cách nhau bằng dấu , hoặc ;" />
+
+        <label>Tiêu đề:</label>
+        <input type="text" th:field="*{subject}" placeholder="Tiêu đề email" />
+
+        <label>Nội dung:</label>
+        <textarea th:field="*{body}" placeholder="Nhập nội dung email"></textarea>
+
+        <label>Tệp đính kèm (tên file, cách nhau bằng dấu phẩy):</label>
+        <input type="text" th:field="*{filenames}" placeholder="Ví dụ: /path/file1.pdf,/path/file2.png" />
+
+        <div>
+            <button type="submit" name="action" value="push">Đưa vào hàng đợi</button>
+            <button type="submit" name="action" value="sendNow">Gửi ngay</button>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="layout/footer :: footer"></footer>
+
+</body>
+</html>

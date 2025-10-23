@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+        .product-detail {
+            max-width: 700px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product-detail img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .product-detail h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .product-detail p {
+            font-size: 16px;
+            color: #555;
+            margin: 6px 0;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(to right, #007BFF, #5A9BD5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            background: linear-gradient(to right, #5A9BD5, #007BFF);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="product-detail">
+    <h2 th:text="${sp.tenSanPham}">Tên sản phẩm</h2>
+
+    <img th:src="@{'/img/' + ${sp.hinhAnh}}" alt="Ảnh sản phẩm">
+
+    <p><b>Giá:</b>
+        <span th:text="${#numbers.formatDecimal(sp.donGia, 0, 'COMMA', 0, 'POINT')}"></span> ₫
+    </p>
+
+    <p><b>Tồn kho:</b> <span th:text="${sp.soLuongTon}"></span></p>
+
+    <!-- ✅ Thêm phần tên loại và nhà cung cấp -->
+    <p><b>Loại sản phẩm:</b> <span th:text="${sp.loai.tenLoai}">Không có loại</span></p>
+    <p><b>Nhà cung cấp:</b> <span th:text="${sp.nhaCungCap.tenNhaCungCap}">Không có NCC</span></p>
+
+    <a th:href="@{/sanpham}" class="btn-back">← Quay lại</a>
+</div>
+
+</body>
+</html>
